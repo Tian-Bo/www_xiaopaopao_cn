@@ -1,19 +1,11 @@
 <template>
 	<div id="app">
-		<Layout>
-			<router-view/>
-		</Layout>
+		<router-view/>
 	</div>
 </template>
 
 <script>
-	import Layout from "@/layouts";
-	export default {
-		name: "App",
-		components: {
-			Layout
-		}
-	};
+
 </script>
 
 <style lang="scss">

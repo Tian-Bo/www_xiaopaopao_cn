@@ -5,6 +5,9 @@ import store from './store'
 import i18n from './locale'
 import filters from './filters'
 
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
 import Toast from './components/toast/index'
 Vue.use(Toast);
 

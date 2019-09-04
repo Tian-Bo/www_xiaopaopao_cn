@@ -1,39 +1,126 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// 正常加载
-// import Home from '../views/home'
-// import About from '../views/About'
-
-// 按需（懒）加载（vue实现）
-const Home = () => import( /* webpackChunkName: "home" */ '../views/home')
-const About = () => import( /* webpackChunkName: "about" */ '../views/about')
-
-// 按需（懒）加载（webpack动态导入）
-// require.ensure() 是 webpack 特有的，已经被 import() 取代。大家理解其作用即可，参考issues —— https://github.com/wangyupo/vue-vuex-router/issues/1
-// const Home = r => require.ensure([], () => r(require('../views/home')), 'home')
-// const About = r => require.ensure([], () => r(require('../views/About')), 'about')
-
 Vue.use(Router)
-
 let base = `${process.env.BASE_URL}` // 动态获取二级目录
+
+
+// 首页
+const Login = () => import('../views/home/login')
+const Register = () => import('../views/home/register')
+const Home = () => import('../views/home/index')
+
+// 登陆首页
+const Index = () => import('../views/index')
+
+// 概况
+const About = () => import('../views/general/about')
+
 
 const router = new Router({
     mode: 'history',
     base: base,
-    routes: [{
-            path: '/',
-            name: 'home',
-            component: Home
+    routes: [
+        { path: '/', name: '首页', component: Home, show: false },
+        { path: '/login', name: '登陆', component: Login, show: false },
+        { path: '/register', name: '注册', component: Register, show: false  },
+        {
+            path: '/index',
+            name: '概况总览',
+            component: Index,
+            show: true,
+            children: [
+                { path: '/index', name: '概况总览', component: About, show: false },
+            ]
         },
         {
-            path: '/about',
-            name: 'about',
-            component: About
+            path: '/setting',
+            name: '创意管理',
+            component: Index,
+            show: true,
+            children: [
+                { path: '/setting', name: '注册1', component: About, show: true },
+                { path: '/sad', name: '注册2', component: About, show: true },
+                { path: '/sczxad', name: '注册3', component: About, show: true },
+                { path: '/ccccxzcc4', name: '注册4', component: About, show: true },
+            ]
+        },
+        {
+            path: '/xzcczxczx',
+            name: '活动管理',
+            component: Index,
+            show: true,
+            children: [
+                { path: '/xzcczxczx', name: '注册1', component: About, show: true },
+                { path: '/cccczxczxc21c2', name: '注册2', component: About, show: true },
+                { path: '/scscxz', name: '注册3', component: About, show: true },
+                { path: '/xzczxcz', name: '注册4', component: About, show: true },
+            ]
+        },
+        {
+            path: '/123sdad',
+            name: '店铺管理',
+            component: Index,
+            show: true,
+            children: [
+                { path: '/123sdad', name: '注册1', component: About, show: true },
+                { path: '/ccccc655462', name: '注册2', component: About, show: true },
+                { path: '/ccczxc8', name: '注册3', component: About, show: false },
+                { path: '/zxczxczxmn', name: '注册4', component: About, show: false },
+            ]
+        },
+        {
+            path: '/dsad12123213',
+            name: '用户管理',
+            component: Index,
+            show: true,
+            children: [
+                { path: '/dsad12123213', name: '中国', component: About, show: true },
+                { path: '/dsad121232131', name: '中国', component: About, show: true },
+                { path: '/dsad1212321323', name: '注册3', component: About, show: false },
+                { path: '/dsad1212321332432', name: '注册4', component: About, show: false },
+            ]
+        },
+        {
+            path: '/ds1sadsa',
+            name: '数据中心',
+            component: Index,
+            show: true,
+            children: [
+                { path: '/ds1sadsa', name: '注册1', component: About, show: true },
+            ]
+        },
+        {
+            path: '/ds1sadsacxz',
+            name: '功能插件',
+            component: Index,
+            show: true,
+            children: [
+                { path: '/ds1sadsacxz', name: '注册1', component: About, show: true },
+            ]
+        },
+        {
+            path: '/ds1sadsacxz2321',
+            name: '服务中心',
+            component: Index,
+            show: true,
+            children: [
+                { path: '/ds1sadsacxz2321', name: '注册1', component: About, show: true },
+            ]
+        },
+        {
+            path: '/ds1sadsacxz232121321312',
+            name: '设置',
+            component: Index,
+            show: true,
+            children: [
+                { path: '/ds1sadsacxz232121321312', name: '注册1', component: About, show: true },
+            ]
         },
         {
             path: '*',
-            redirect: '/'
+            redirect: '/',
+            show: false,
         }
     ],
     scrollBehavior(to, from, savedPosition) {
