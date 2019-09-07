@@ -7,9 +7,9 @@
         label-width="0px"
         class="demo-ruleForm login-container"
     >
-        <h3 class="title">登陆</h3>
-        <el-form-item prop="name">
-            <el-input type="text" v-model="userInfo.name" auto-complete="off" placeholder="手机号"></el-input>
+        <h3 class="title">注册</h3>
+        <el-form-item prop="tel">
+            <el-input type="text" v-model="userInfo.tel" auto-complete="off" placeholder="手机号"></el-input>
         </el-form-item>
         <el-form-item prop="password">
             <el-input
@@ -19,7 +19,7 @@
                 placeholder="密码"
             ></el-input>
         </el-form-item>
-		<el-form-item prop="password">
+        <el-form-item prop="password">
             <el-input
                 type="password"
                 v-model="userInfo.password"
@@ -27,7 +27,11 @@
                 placeholder="确认密码"
             ></el-input>
         </el-form-item>
-        <el-form-item style="width:100%;">
+        <div class="login">
+            <el-checkbox v-model="checked" checked class="remember">同意阅读</el-checkbox>
+            <router-link tag="span" to="/login">前往登录</router-link>
+        </div>
+        <el-form-item style="width:100%; margin-top: 30px;">
             <el-button
                 type="primary"
                 style="width:100%;"
@@ -39,48 +43,69 @@
 </template>
 
 <script>
-import { checkTel, checkPassword } from '@/common/util';
+import { checkTel, checkPassword } from "@/common/util";
+import { postRegister } from "@/api/common";
+
 export default {
     data() {
         return {
             logining: false, // logining
             userInfo: {
-                name: '',
-                password: ''
+                tel: "",
+                password: ""
             }, // 账号密码
             userInfoError: {
-                name: [
-                    { required: true, message: '请输入账号', trigger: 'blur' }
+                tel: [
+                    { required: true, message: "请输入账号", trigger: "blur" }
                 ],
                 password: [
-                    { required: true, message: '请输入密码', trigger: 'blur' }
+                    { required: true, message: "请输入密码", trigger: "blur" }
                 ]
             }, // 账号密码为输入提示
             checked: true // 己住密码
         };
     },
     methods: {
-        // 登陆
+        // TODO 登陆
         handleSubmit() {
-            if (!checkTel(this.userInfo.name)) {
+            // TO 验证手机
+            if (!checkTel(this.userInfo.tel)) {
                 return this.$message({
-                    message: '请输入正确的账号',
-                    type: 'warning'
+                    message: "请输入正确的账号",
+                    type: "warning"
                 });
             }
+            // TO 验证密码
             if (!checkPassword(this.userInfo.password)) {
                 return this.$message({
-                    message: '请输入正确的密码',
-                    type: 'warning'
+                    message: "请输入正确的密码",
+                    type: "warning"
                 });
             }
-            this.$router.push({ path: '/login' });
+            // 点击登陆
+            let params = {
+                tel: this.userInfo.tel,
+                password: this.userInfo.password
+            };
+            postRegister(params).then(res => {
+                if (res.status === 0) {
+                    return this.$message({
+                        message: res.message,
+                        type: "success"
+                    });
+                }
+                this.$message({ message: res.message, type: "warning" });
+            });
         }
     }
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
+body {
+    background-image: url(../../assets/img/indexBg.jpg);
+    background-size: 100%;
+}
 .login-container {
     border-radius: 5px;
     background-clip: padding-box;
@@ -94,6 +119,14 @@ export default {
         margin: 0px auto 40px auto;
         text-align: center;
         color: #505458;
+    }
+    .login {
+        display: flex;
+        justify-content: space-between;
+        color: #409eff;
+        span {
+            cursor: pointer;
+        }
     }
 }
 </style>

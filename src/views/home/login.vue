@@ -8,8 +8,8 @@
         class="demo-ruleForm login-container"
     >
         <h3 class="title">登陆</h3>
-        <el-form-item prop="name">
-            <el-input type="text" v-model="userInfo.name" auto-complete="off" placeholder="手机号"></el-input>
+        <el-form-item prop="tel">
+            <el-input type="text" v-model="userInfo.tel" auto-complete="off" placeholder="手机号"></el-input>
         </el-form-item>
         <el-form-item prop="password">
             <el-input
@@ -19,7 +19,10 @@
                 placeholder="密码"
             ></el-input>
         </el-form-item>
-        <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
+        <div class="register">
+            <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
+            <router-link tag="span" to="/register">前往注册</router-link>
+        </div>
         <el-form-item style="width:100%;">
             <el-button
                 type="primary"
@@ -32,42 +35,62 @@
 </template>
 
 <script>
-import { checkTel, checkPassword } from '@/common/util'
+import { postLogin } from "@/api/common"
+import { checkTel, checkPassword, setStore } from "@/common/util"
 export default {
     data() {
         return {
             logining: false, // logining
             userInfo: {
-                name: '',
-                password: ''
+                tel: "",
+                password: ""
             }, // 账号密码
             userInfoError: {
-                name: [
-                    { required: true, message: '请输入账号', trigger: 'blur' }
+                tel: [
+                    { required: true, message: "请输入账号", trigger: "blur" }
                 ],
                 password: [
-                    { required: true, message: '请输入密码', trigger: 'blur' }
+                    { required: true, message: "请输入密码", trigger: "blur" }
                 ]
-            },	// 账号密码为输入提示
+            }, // 账号密码为输入提示
             checked: true // 己住密码
-        }
+        };
     },
     methods: {
-		// 登陆
+        // 登陆
         handleSubmit() {
-			if (!checkTel(this.userInfo.name)) {
-				return this.$message({ message: '请输入正确的账号', type: 'warning' })
-			}
-			if (!checkPassword(this.userInfo.password)) {
-				return this.$message({ message: '请输入正确的密码', type: 'warning' }) 
-			}
-            this.$router.push({ path: '/register' })
+            if (!checkTel(this.userInfo.tel)) {
+                return this.$message({
+                    message: "请输入正确的账号",
+                    type: "warning"
+                });
+            }
+            if (!checkPassword(this.userInfo.password)) {
+                return this.$message({
+                    message: "请输入正确的密码",
+                    type: "warning"
+                });
+            }
+            let params = {
+                tel: this.userInfo.tel,
+                password: this.userInfo.password
+            }
+            postLogin(params).then(res => {
+                if(res.status === 0) {
+                    setStore('token', res.data.token)
+                    this.$router.push({ path: "/index" });
+                }
+            })
         }
     }
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
+body {
+    background-image: url(../../assets/img/indexBg.jpg);
+    background-size: 100%;
+}
 .login-container {
     border-radius: 5px;
     background-clip: padding-box;
@@ -84,6 +107,14 @@ export default {
     }
     .remember {
         margin: 0px 0px 35px 0px;
+    }
+    .register{
+        display: flex;
+        justify-content: space-between;
+        color: #409eff;
+        span{
+            cursor: pointer;
+        }
     }
 }
 </style>

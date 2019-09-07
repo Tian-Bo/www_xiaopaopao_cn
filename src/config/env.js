@@ -11,8 +11,8 @@ const dev = {
     routerMode: 'history', // hash
 
     /* beta */
-    baseUrl: `${location.origin}`,         // 自定义反向代理
-    credential: true,
+    baseUrl: 'http://apis.xiaopaopao.cn:7001',         // 自定义反向代理
+    credential: false,
 };
 
 const prod = {

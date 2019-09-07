@@ -51,12 +51,12 @@
                         <el-dropdown placement="bottom">
                             <i class="el-icon-setting"></i>
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item>查看怪兽</el-dropdown-item>
-                                <el-dropdown-item>新增土豆</el-dropdown-item>
-                                <el-dropdown-item>删除西红柿</el-dropdown-item>
+                                <el-dropdown-item>个人中心</el-dropdown-item>
+                                <el-dropdown-item>切换用户</el-dropdown-item>
+                                <el-dropdown-item @click.native="withdrawLogin">退出登陆</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
-                        <span>18580557309</span>
+                        <span>{{ data.username }}</span>
                     </div>
                 </el-header>
 
@@ -69,15 +69,33 @@
 </template>
 
 <script>
+import { getUserInfo } from "@/api/common";
 export default {
     data() {
         return {
             isCollapse: false, // 关闭显示导航
-            list: [] // 列表
+            list: [], // 列表
+            data: [] // 用户信息
         };
+    },
+    methods: {
+        // TODO 获取用户信息
+        getUserInfo() {
+            getUserInfo().then(res => {
+                if (res.status === 0) {
+                    this.data = res.data;
+                }
+            });
+        },
+        // TODO 退出登陆
+        withdrawLogin() {
+            window.localStorage.removeItem('token');
+            this.$router.push({ path: "/login" });
+        }
     },
     created() {
         this.list = this.$router.options.routes;
+        this.getUserInfo();
     }
 };
 </script>
@@ -92,6 +110,7 @@ export default {
             background-color: #304156;
             .navbar-el-menu {
                 overflow: hidden;
+                min-height: 100%;
                 .navbar-logo {
                     height: 70px;
                     line-height: 70px;
