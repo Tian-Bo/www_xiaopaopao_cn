@@ -28,6 +28,7 @@
                 type="primary"
                 style="width:100%;"
                 @click="handleSubmit"
+                @keyup.enter="handleSubmit"
                 :loading="logining"
             >登录</el-button>
         </el-form-item>

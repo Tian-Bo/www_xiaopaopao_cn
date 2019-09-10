@@ -19,10 +19,10 @@
                 placeholder="密码"
             ></el-input>
         </el-form-item>
-        <el-form-item prop="password">
+        <el-form-item prop="confirm">
             <el-input
                 type="password"
-                v-model="userInfo.password"
+                v-model="userInfo.confirm"
                 auto-complete="off"
                 placeholder="确认密码"
             ></el-input>
@@ -51,8 +51,9 @@ export default {
         return {
             logining: false, // logining
             userInfo: {
-                tel: "",
-                password: ""
+                tel: '',
+                password: '',
+                confirm: '',
             }, // 账号密码
             userInfoError: {
                 tel: [
@@ -60,13 +61,16 @@ export default {
                 ],
                 password: [
                     { required: true, message: "请输入密码", trigger: "blur" }
+                ],
+                confirm: [
+                    { required: true, message: "两次输入密码不一致", trigger: "blur" }
                 ]
             }, // 账号密码为输入提示
             checked: true // 己住密码
         };
     },
     methods: {
-        // TODO 登陆
+        // TODO 注册
         handleSubmit() {
             // TO 验证手机
             if (!checkTel(this.userInfo.tel)) {
@@ -82,7 +86,12 @@ export default {
                     type: "warning"
                 });
             }
-            // 点击登陆
+            if (this.userInfo.password != this.userInfo.confirm) {
+                return this.$message({
+                    message: "两次输入密码不一致",
+                    type: "warning"
+                });
+            }
             let params = {
                 tel: this.userInfo.tel,
                 password: this.userInfo.password

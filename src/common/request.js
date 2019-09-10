@@ -33,7 +33,6 @@ AJAX.interceptors.response.use(function (res) {
     // token过期
     if(res.status === -1) {
         window.localStorage.removeItem(token)
-        this.$message.error('token过期,即将重新登陆')
         return this.$router.push({ path: "/login" })
     }
     // 操作失误

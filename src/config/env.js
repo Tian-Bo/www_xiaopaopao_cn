@@ -9,9 +9,7 @@
 
 const dev = {
     routerMode: 'history', // hash
-
-    /* beta */
-    baseUrl: 'http://apis.xiaopaopao.cn:7001',         // 自定义反向代理
+    baseUrl: 'https://apis.xiaopaopao.cn',         // 自定义反向代理
     credential: false,
 };
 
