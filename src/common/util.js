@@ -1,4 +1,31 @@
 /**
+ * 存储sessionStorage
+ */
+export const setSessionStorage = (name, content) => {
+    if (!name) return;
+    if (typeof content !== 'string') {
+        content = JSON.stringify(content);
+    }
+    window.sessionStorage.setItem(name, content);
+};
+
+/**
+ * 获取sessionStorage
+ */
+export const getSessionStorage = name => {
+    if (!name) return;
+    return window.sessionStorage.getItem(name);
+};
+
+/**
+ * 删除sessionStorage
+ */
+export const removeSessionStorage = name => {
+    if (!name) return;
+    window.sessionStorage.removeItem(name);
+};
+
+/**
  * 存储localStorage
  */
 export const setStore = (name, content) => {

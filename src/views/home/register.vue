@@ -82,7 +82,7 @@ export default {
             // TO 验证密码
             if (!checkPassword(this.userInfo.password)) {
                 return this.$message({
-                    message: "请输入正确的密码",
+                    message: "请输入包含字母和数字为6-16位的密码",
                     type: "warning"
                 });
             }

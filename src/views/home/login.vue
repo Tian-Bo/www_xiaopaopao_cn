@@ -37,7 +37,7 @@
 
 <script>
 import { postLogin } from "@/api/common"
-import { checkTel, checkPassword, setStore } from "@/common/util"
+import { checkTel, checkPassword, setSessionStorage } from "@/common/util"
 export default {
     data() {
         return {
@@ -78,9 +78,10 @@ export default {
             }
             postLogin(params).then(res => {
                 if(res.status === 0) {
-                    setStore('token', res.data.token)
-                    this.$router.push({ path: "/index" });
+                    window.sessionStorage.setItem('token', res.data.token)
+                    return this.$router.push({ path: "/index" })
                 }
+                this.$message.error(res.message)
             })
         }
     }

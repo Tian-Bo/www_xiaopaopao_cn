@@ -18,7 +18,7 @@
                             v-if="item.show"
                         >
                             <template slot="title">
-                                <router-link tag="div" :to="item.path">
+                                <router-link tag="div" :to="item.path" @click.native="Navigation(item.name)">
                                     <i class="el-icon-location"></i>
                                     <span v-show="!isCollapse">{{ item.name }}</span>
                                 </router-link>
@@ -30,6 +30,7 @@
                                 :index="i"
                                 :key="i.toString()"
                                 v-if="val.show"
+                                @click.native="NavigationMenu(item.name, val.name)"
                             >{{ val.name }}</router-link>
                         </el-submenu>
                     </el-menu>
@@ -45,13 +46,13 @@
                         <span @click="isCollapse=true" v-show="!isCollapse">
                             <i class="el-icon-s-unfold"></i>
                         </span>
-                        <span>中国/日本/美国</span>
+                        <span>{{ menuText }}</span>
                     </div>
                     <div class="header-right">
                         <el-dropdown placement="bottom">
                             <i class="el-icon-setting"></i>
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item>个人中心</el-dropdown-item>
+                                <el-dropdown-item><router-link to="/account_home">个人中心</router-link></el-dropdown-item>
                                 <el-dropdown-item>切换用户</el-dropdown-item>
                                 <el-dropdown-item @click.native="withdrawLogin">退出登陆</el-dropdown-item>
                             </el-dropdown-menu>
@@ -75,7 +76,8 @@ export default {
         return {
             isCollapse: false, // 关闭显示导航
             list: [], // 列表
-            data: [] // 用户信息
+            data: [], // 用户信息
+            menuText: '概况', // 展示标题
         };
     },
     methods: {
@@ -89,8 +91,16 @@ export default {
         },
         // TODO 退出登陆
         withdrawLogin() {
-            window.localStorage.removeItem('token');
+            window.sessionStorage.removeItem('token');
             this.$router.push({ path: "/login" });
+        },
+        // 记录一级菜单
+        Navigation(name) {
+            this.menuText = name
+        },
+        // 记录二级菜单
+        NavigationMenu(name, menu) {
+            this.menuText = name + '/' + menu
         }
     },
     created() {

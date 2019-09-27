@@ -32,7 +32,7 @@ AJAX.interceptors.request.use(function (config) {
 AJAX.interceptors.response.use(function (res) {
     // token过期
     if(res.status === -1) {
-        window.localStorage.removeItem(token)
+        window.sessionStorage.removeItem('token')
         return this.$router.push({ path: "/login" })
     }
     // 操作失误
