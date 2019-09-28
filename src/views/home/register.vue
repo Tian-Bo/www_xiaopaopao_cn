@@ -110,11 +110,7 @@ export default {
 };
 </script>
 
-<style lang='scss'>
-body {
-    background-image: url(../../assets/img/indexBg.jpg);
-    background-size: 100%;
-}
+<style lang='scss' scoped>
 .login-container {
     border-radius: 5px;
     background-clip: padding-box;

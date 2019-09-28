@@ -32,6 +32,7 @@
                 :loading="logining"
             >登录</el-button>
         </el-form-item>
+        <div class="bg-img-indexBg bg-100"></div>
     </el-form>
 </template>
 
@@ -88,11 +89,7 @@ export default {
 };
 </script>
 
-<style lang='scss'>
-body {
-    background-image: url(../../assets/img/indexBg.jpg);
-    background-size: 100%;
-}
+<style lang='scss' scoped>
 .login-container {
     border-radius: 5px;
     background-clip: padding-box;

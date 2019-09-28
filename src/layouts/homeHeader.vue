@@ -59,11 +59,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
-body {
-    background-image: url(../assets/img/indexBg.jpg);
-    background-size: 100%;
-}
+<style lang="scss" scoped>
 .header {
     width: 100%;
     position: fixed;
