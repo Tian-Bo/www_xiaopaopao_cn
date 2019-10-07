@@ -25,7 +25,7 @@ const Index = () => import('../views/index')
 
 
 
-const About = () => import('../views/general/about')
+const General = () => import('../views/general/index')
 
 
 const router = new Router({
@@ -44,7 +44,7 @@ const router = new Router({
             component: Index,
             show: true,
             children: [
-                { path: '/', name: '概况总览', meta: { needLogin: true },  component: About, show: false },
+                { path: '/', name: '概况总览', meta: { needLogin: true },  component: General, show: false },
             ]
         },
         {
@@ -54,10 +54,10 @@ const router = new Router({
             show: true,
             needLogin: true,
             children: [
-                { path: '/setting', name: '注册1', meta: { needLogin: true }, component: About, show: true },
-                { path: '/sad', name: '注册2', meta: { needLogin: true }, component: About, show: true },
-                { path: '/sczxad', name: '注册3', meta: { needLogin: true }, component: About, show: true },
-                { path: '/ccccxzcc4', name: '注册4', meta: { needLogin: true }, component: About, show: true },
+                { path: '/setting', name: '注册1', meta: { needLogin: true }, component: General, show: true },
+                { path: '/sad', name: '注册2', meta: { needLogin: true }, component: General, show: true },
+                { path: '/sczxad', name: '注册3', meta: { needLogin: true }, component: General, show: true },
+                { path: '/ccccxzcc4', name: '注册4', meta: { needLogin: true }, component: General, show: true },
             ]
         },
         {
@@ -67,10 +67,10 @@ const router = new Router({
             show: true,
             needLogin: true,
             children: [
-                { path: '/xzcczxczx', name: '注册1', meta: { needLogin: true }, component: About, show: true },
-                { path: '/cccczxczxc21c2', name: '注册2', meta: { needLogin: true }, component: About, show: true },
-                { path: '/scscxz', name: '注册3', meta: { needLogin: true }, component: About, show: true },
-                { path: '/xzczxcz', name: '注册4', meta: { needLogin: true }, component: About, show: true },
+                { path: '/xzcczxczx', name: '注册1', meta: { needLogin: true }, component: General, show: true },
+                { path: '/cccczxczxc21c2', name: '注册2', meta: { needLogin: true }, component: General, show: true },
+                { path: '/scscxz', name: '注册3', meta: { needLogin: true }, component: General, show: true },
+                { path: '/xzczxcz', name: '注册4', meta: { needLogin: true }, component: General, show: true },
             ]
         },
         {
@@ -80,10 +80,10 @@ const router = new Router({
             show: true,
             needLogin: true,
             children: [
-                { path: '/123sdad', name: '注册1', meta: { needLogin: true }, component: About, show: true },
-                { path: '/ccccc655462', name: '注册2', meta: { needLogin: true }, component: About, show: true },
-                { path: '/ccczxc8', name: '注册3', meta: { needLogin: true }, component: About, show: false },
-                { path: '/zxczxczxmn', name: '注册4', meta: { needLogin: true }, component: About, show: false },
+                { path: '/123sdad', name: '注册1', meta: { needLogin: true }, component: General, show: true },
+                { path: '/ccccc655462', name: '注册2', meta: { needLogin: true }, component: General, show: true },
+                { path: '/ccczxc8', name: '注册3', meta: { needLogin: true }, component: General, show: false },
+                { path: '/zxczxczxmn', name: '注册4', meta: { needLogin: true }, component: General, show: false },
             ]
         },
         {
@@ -93,10 +93,10 @@ const router = new Router({
             show: true,
             needLogin: true,
             children: [
-                { path: '/dsad12123213', name: '中国', meta: { needLogin: true }, component: About, show: true },
-                { path: '/dsad121232131', name: '中国', meta: { needLogin: true }, component: About, show: true },
-                { path: '/dsad1212321323', name: '注册3', meta: { needLogin: true }, component: About, show: false },
-                { path: '/dsad1212321332432', name: '注册4', meta: { needLogin: true }, component: About, show: false },
+                { path: '/dsad12123213', name: '中国', meta: { needLogin: true }, component: General, show: true },
+                { path: '/dsad121232131', name: '中国', meta: { needLogin: true }, component: General, show: true },
+                { path: '/dsad1212321323', name: '注册3', meta: { needLogin: true }, component: General, show: false },
+                { path: '/dsad1212321332432', name: '注册4', meta: { needLogin: true }, component: General, show: false },
             ]
         },
         {
@@ -106,7 +106,7 @@ const router = new Router({
             show: true,
             needLogin: true,
             children: [
-                { path: '/ds1sadsa', name: '注册1', meta: { needLogin: true }, component: About, show: true },
+                { path: '/ds1sadsa', name: '注册1', meta: { needLogin: true }, component: General, show: true },
             ]
         },
         {
@@ -116,7 +116,7 @@ const router = new Router({
             show: true,
             needLogin: true,
             children: [
-                { path: '/ds1sadsacxz', name: '注册1', meta: { needLogin: true }, component: About, show: true },
+                { path: '/ds1sadsacxz', name: '注册1', meta: { needLogin: true }, component: General, show: true },
             ]
         },
         {
@@ -126,7 +126,7 @@ const router = new Router({
             show: true,
             needLogin: true,
             children: [
-                { path: '/ds1sadsacxz2321', name: '注册1', meta: { needLogin: true }, component: About, show: true },
+                { path: '/ds1sadsacxz2321', name: '注册1', meta: { needLogin: true }, component: General, show: true },
             ]
         },
         {
@@ -136,7 +136,7 @@ const router = new Router({
             show: true,
             needLogin: true,
             children: [
-                { path: '/ds1sadsacxz232121321312', name: '注册1', meta: { needLogin: true }, component: About, show: true },
+                { path: '/ds1sadsacxz232121321312', name: '注册1', meta: { needLogin: true }, component: General, show: true },
             ]
         },
         {

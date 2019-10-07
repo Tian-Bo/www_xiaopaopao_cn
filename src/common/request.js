@@ -1,6 +1,6 @@
 import axios from 'axios'
 import env from '@/config/env'
-import { getStore } from "@/common/util"
+import { getSessionStorage } from "@/common/util"
 
 const MOCKURL = '' // mock数据地址
 
@@ -54,24 +54,24 @@ export default {
     get(url, param = {}, headers = {}) {
         return AJAX.get(url, {
             params: param,
-            headers: {'Authorization': 'Bearer ' + getStore('token')}
+            headers: {'Authorization': 'Bearer ' + getSessionStorage('token')}
         })
     },
     post(url, param = null, headers = {}) {
         return AJAX.post(url, param, {
-            headers: {'Authorization': 'Bearer ' + getStore('token')},
+            headers: {'Authorization': 'Bearer ' + getSessionStorage('token')},
         })
     },
     put(url, param = null, headers = {}) {
         return AJAX.put(url, param, {
-            headers: {'Authorization': 'Bearer ' + getStore('token')},
+            headers: {'Authorization': 'Bearer ' + getSessionStorage('token')},
         })
     },
     file(url, param = null, headers = {}) {
         return AJAX.post(url, param, {
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'Authorization': 'Bearer ' + getStore('token')
+                'Authorization': 'Bearer ' + getSessionStorage('token')
             }
         })
     },
@@ -80,7 +80,7 @@ export default {
             param,
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'Authorization': 'Bearer ' + getStore('token')
+                'Authorization': 'Bearer ' + getSessionStorage('token')
             }
         })
     }

@@ -24,6 +24,7 @@
             </div>
             <el-button class="back-btn" @click="$router.go(-1)">返回</el-button>
         </main>
+        
     </div>
 </template>
 

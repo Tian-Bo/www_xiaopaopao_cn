@@ -39,6 +39,7 @@
                 :loading="logining"
             >注册</el-button>
         </el-form-item>
+        <div class="bg-img-indexBg bg-100"></div>
     </el-form>
 </template>
 

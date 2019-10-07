@@ -19,7 +19,7 @@
                 <el-form-item label="确认密码">
                     <el-input v-model="form.name" placeholder="请在次输入密码"></el-input>
                 </el-form-item>
-                <el-button class="el-button-sub" type="primary" @click="onSubmit">立即创建</el-button>
+                <el-button class="el-button-sub" type="primary" @click="onSubmit">保存</el-button>
                 <el-button class="el-button-can" type="primary" @click="$router.go(-1)">取消</el-button>
             </el-form>
         </main>

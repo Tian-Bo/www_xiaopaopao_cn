@@ -1,6 +1,7 @@
 <template>
     <div class="app-content">
         <home-header/>
+		<div class="bg-img-indexBg bg-100"></div>
     </div>
 </template>
 
