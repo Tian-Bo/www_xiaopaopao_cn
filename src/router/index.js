@@ -8,7 +8,7 @@ import Router from 'vue-router'
 // 按需（懒）加载（vue实现）
 const Home = () => import( /* webpackChunkName: "home" */ '../views/home')
 const About = () => import( /* webpackChunkName: "about" */ '../views/about')
-
+const Yarm = () => import( /* webpackChunkName: "about" */ '../views/yarm')
 // 按需（懒）加载（webpack动态导入）
 // require.ensure() 是 webpack 特有的，已经被 import() 取代。大家理解其作用即可，参考issues —— https://github.com/wangyupo/vue-vuex-router/issues/1
 // const Home = r => require.ensure([], () => r(require('../views/home')), 'home')
@@ -24,7 +24,14 @@ const router = new Router({
     routes: [{
             path: '/',
             name: 'home',
-            component: Home
+            component: Home,
+            children: [
+                {
+                    path: '/yarm',
+                    component: Yarm,
+                    name: 'yarm'
+                },
+            ]
         },
         {
             path: '/about',

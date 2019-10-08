@@ -1,5 +1,6 @@
 <template>
     <div class="home">
+        <router-link to="/about">测试哦哦哦</router-link>
         <img @click="openDialog" alt="Vue logo" src="../assets/logo.png">
         <HelloWorld msg="Welcome to Your Vue.js App"/>
         <p @click="changeUserInfo(233)">
