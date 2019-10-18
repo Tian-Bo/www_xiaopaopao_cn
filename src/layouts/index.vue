@@ -1,3 +1,9 @@
+<!--
+ * @Author: tianbo
+ * @LastEditors: tianbo
+ * @Date: 2019-09-03 17:25:07
+ * @LastEditTime: 2019-09-03 17:25:07
+ -->
 <template>
     <div class="layout-container">
         <el-container class="content-body">
@@ -162,6 +168,6 @@ export default {
     }
 }
 .navbar-el-menu:not(.el-menu--collapse) {
-    width: 200px;
+    width: 180px;
 }
 </style>
