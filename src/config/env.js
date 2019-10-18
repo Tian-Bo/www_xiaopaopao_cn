@@ -9,14 +9,14 @@
 
 const dev = {
     routerMode: 'history', // hash
-
-    /* beta */
-    baseUrl: `${location.origin}`,         // 自定义反向代理
-    credential: true,
+    baseUrl: 'https://apis.xiaopaopao.cn',         // 自定义反向代理
+    credential: false,
 };
 
 const prod = {
-    ...dev,
+    routerMode: 'history', // hash
+    baseUrl: 'https://apis.xiaopaopao.cn',         // 自定义反向代理
+    credential: false,
 };
 
 export default process.env.NODE_ENV === 'development' ? dev : prod;
