@@ -1,3 +1,9 @@
+/*
+ * @Author: tianbo
+ * @LastEditors: tianbo
+ * @Date: 2019-09-03 17:25:07
+ * @LastEditTime: 2019-09-03 17:25:07
+ */
 import Vue from 'vue'
 import Router from 'vue-router'
 
