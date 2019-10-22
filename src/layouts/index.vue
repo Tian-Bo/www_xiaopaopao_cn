@@ -40,7 +40,7 @@ export default {
     data() {
         return {
             isCollapse: false, // 关闭显示导航
-            shop_info: [], // 用户信息
+            shop_info: {}, // 用户信息
             menuText: "概况", // 展示标题
             menuList: [
                 {

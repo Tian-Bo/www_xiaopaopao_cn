@@ -21,7 +21,7 @@
                             :to="item.path"
                             @click.native="Navigation(item.name)"
                         >
-                            <i class="el-icon-location"></i>
+                            <i class="iconfont" :class="item.icon"></i>
                             <span v-show="!isCollapse">{{ item.name }}</span>
                         </router-link>
                     </template>
@@ -46,7 +46,7 @@ export default {
         // navbar 显示隐藏
         isCollapse: {
             type: Boolean,
-            default: false,
+            default: false
         }
     },
     data() {
@@ -59,12 +59,12 @@ export default {
         // 记录一级菜单
         Navigation(name) {
             this.menuText = name;
-            this.$emit('clickMethod', this.menuText)
+            this.$emit("clickMethod", this.menuText);
         },
         // 记录二级菜单
         NavigationMenu(name, menu) {
             this.menuText = name + "/" + menu;
-            this.$emit('clickMethod', this.menuText)
+            this.$emit("clickMethod", this.menuText);
         }
     }
 };
@@ -81,13 +81,18 @@ export default {
             overflow: hidden;
             min-height: 100%;
             .navbar-logo {
-                height: 70px;
-                line-height: 70px;
+                height: 50px;
+                line-height: 50px;
                 text-align: center;
                 color: #fff;
                 font-size: 30px;
                 background-color: #409eff;
             }
+        }
+        .iconfont {
+            width: 16px;
+            display: inline-block;
+            margin-right: 20px;
         }
     }
 }

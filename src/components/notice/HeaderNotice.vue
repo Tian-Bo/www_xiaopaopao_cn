@@ -1,7 +1,7 @@
 <template>
     <div class="app-content">
         <div>店铺试用已到期，到期后店铺仍可访问，但店铺功能不可使用，建议尽快购买正式版本</div>
-        <el-button class="tuitionOpening" size="mini" >续费开通</el-button>
+        <el-button class="tuitionOpening" size="mini">续费开通</el-button>
     </div>
 </template>
 
@@ -32,5 +32,6 @@ export default {
 }
 .tuitionOpening{
     margin-left: 15px;
+    color: #EE4141;
 }
 </style>

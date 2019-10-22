@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import headerNotice from '@/components/headerNotice.vue'
+import headerNotice from '@/components/notice/HeaderNotice.vue'
 import mainLeft from './components/mainLeft.vue'
 import mainRight from './components/mainRight.vue'
 export default {

@@ -50,7 +50,7 @@ export default {
         // 跳转后台
         jumpDamin(item) {
             // 在此存储店铺信息
-            this.$router.push({ path: '/index' })
+            this.$router.push({ path: '/general' })
         }
     }
 };

@@ -92,6 +92,8 @@ body {
 
 
 
+
+
 // 背景颜色 或者背景图片
 .bg-100{
     position: fixed;
@@ -104,6 +106,11 @@ body {
 .bg-img-indexBg {
     background-image: url(./assets/img/indexBg.jpg);
     background-size: 100%;
+}
+.container{
+    background-color: #fff;
+    min-height: 100%;
+    padding: 15px;
 }
 
 
