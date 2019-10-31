@@ -1,28 +1,31 @@
 <template>
     <div class="navbar">
-        <div style="overflow-y: auto; height: 100%;">
+        <div style="height: 100%">
             <el-menu
                 :collapse="isCollapse"
                 class="navbar-el-menu"
                 background-color="#304156"
                 text-color="#BFCBD9"
                 active-text-color="#409EFF"
+                style="overflow-y: auto; height: 100%;"
             >
                 <h1 class="navbar-logo">{{ isCollapse ? '泡': '小泡泡'}}</h1>
-                <el-submenu
+
+                <div
+                    :is="label(item)"
                     v-for="(item, index) in list"
                     :index="index.toString()"
                     :key="index"
                     v-if="item.show"
                 >
-                    <template slot="title">
+                    <template slot="title" v-if="item.children.length > 1">
                         <router-link
                             tag="div"
                             :to="item.path"
-                            @click.native="Navigation(item.name)"
+                            @click.native="Navigation(item)"
                         >
                             <i class="iconfont" :class="item.icon"></i>
-                            <span v-show="!isCollapse">{{ item.name }}</span>
+                            <span>{{ item.name }}</span>
                         </router-link>
                     </template>
                     <router-link
@@ -31,10 +34,13 @@
                         v-for="(val, i) in item.children"
                         :index="i"
                         :key="i.toString()"
-                        v-if="val.show"
-                        @click.native="NavigationMenu(item.name, val.name)"
+                        v-if="val.show && item.children.length > 1"
+                        @click.native="Navigation(item, val)"
                     >{{ val.name }}</router-link>
-                </el-submenu>
+
+                    <i v-if="item.children.length <= 1" class="iconfont" :class="item.icon"></i>
+                    <span v-if="item.children.length <= 1" slot="title">{{ item.name }}</span>
+                </div>
             </el-menu>
         </div>
     </div>
@@ -52,19 +58,16 @@ export default {
     data() {
         return {
             list: this.$router.options.routes, // 列表
-            menuText: "概况" // 展示标题
         };
     },
     methods: {
-        // 记录一级菜单
-        Navigation(name) {
-            this.menuText = name;
-            this.$emit("clickMethod", this.menuText);
+        // 记录菜单
+        Navigation(item, val) {
+            this.$emit("clickMethod", item, val);
         },
-        // 记录二级菜单
-        NavigationMenu(name, menu) {
-            this.menuText = name + "/" + menu;
-            this.$emit("clickMethod", this.menuText);
+        // 计算标签
+        label(item) {
+            return item.children.length > 1 ? "el-submenu" : "el-menu-item";
         }
     }
 };
@@ -74,23 +77,24 @@ export default {
     position: fixed;
     height: 100%;
     width: 100%;
+    .navbar-logo {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        color: #fff;
+        font-size: 30px;
+        background-color: #409eff;
+    }
     .navbar {
         height: 100%;
         background-color: #304156;
         .navbar-el-menu {
             overflow: hidden;
             min-height: 100%;
-            .navbar-logo {
-                height: 50px;
-                line-height: 50px;
-                text-align: center;
-                color: #fff;
-                font-size: 30px;
-                background-color: #409eff;
-            }
         }
         .iconfont {
             width: 16px;
+            margin-left: 3px;
             display: inline-block;
             margin-right: 20px;
         }
@@ -98,5 +102,6 @@ export default {
 }
 .navbar-el-menu:not(.el-menu--collapse) {
     width: 180px;
+    border: none;
 }
 </style>

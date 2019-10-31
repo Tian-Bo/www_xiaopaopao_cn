@@ -67,9 +67,14 @@ export default {
                 }
             });
         },
-        // 获取title
-        navbarEvent(data) {
-            this.menuText = data;
+        // 获取title, 跳转路由
+        navbarEvent(item, val) {
+            if (typeof(val) != 'undefined') {
+                // this.$route.push(val.path);
+                return this.menuText = item.name + '/' + val.name;
+            }
+            // this.$route.push(item.path);
+            this.menuText = item.name;
         },
         // 切换navbar
         homeHeaderEvent(data) {

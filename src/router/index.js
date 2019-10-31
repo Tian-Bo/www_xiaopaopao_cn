@@ -70,7 +70,15 @@ const router = new Router({
             show: true,
             needLogin: true,
             children: [
-                { path: '/primary', name: '初级玩法', meta: { needLogin: true }, component: primary, show: true },
+                { 
+                    path: '/primary', 
+                    name: '初级玩法', 
+                    meta: { 
+                        needLogin: true 
+                    }, 
+                    component: () => import('../views/creation/primary'), 
+                    show: true 
+                },
                 { path: '/intermediate', name: '中级玩法', meta: { needLogin: true }, component: intermediate, show: true },
                 { path: '/senior', name: '高级玩法', meta: { needLogin: true }, component: senior, show: true },
             ]
